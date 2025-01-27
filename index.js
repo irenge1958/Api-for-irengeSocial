@@ -8,11 +8,17 @@ const postrouter=require("./route/post.js")
 const authrouter=require("./route/Auth.js");
 const tchatrouter=require("./route/tchat.js");
 const dotenv=require('dotenv')
+const cors = require('cors');
 const multer  = require('multer')
 
 dotenv.config()
 
 mongoose.connect(process.env.code_db);
+app.use(cors({
+  origin: ['https://irenge-socialfront-1eby.vercel.app', 'http://localhost:3000'], // Add your production and development domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Specify allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Specify allowed headers
+}));
 app.use(express.json())
 app.use(helmet())
 app.use(morgan("common"))
