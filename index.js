@@ -19,6 +19,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Specify allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'],  // Specify allowed headers
 }));
+app.options('*', cors()); 
 app.use(express.json())
 app.use(helmet())
 app.use(morgan("common"))
