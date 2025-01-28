@@ -28,7 +28,7 @@ app.use('/Auth',authrouter)
 app.use('/tchat',tchatrouter)
 app.use('/post',postrouter)
 app.get('/', (req, res) => {
-  res.status(200).send('API is working on Vercel!');
+  res.status(200).send('API is working on Vercell!');
 });
 
 app.use(express.urlencoded({ extended: true }));
