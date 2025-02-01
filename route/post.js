@@ -101,6 +101,14 @@ catch(err){
    console.log(err)
 }
 })
+route.get('/randomv',async(req,res)=>{
+   try{
+    const randomv=await post.aggregate([{$sample:{size:40}}])
+    res.status(200).json(randomv)
+   }catch(err){
+   next(err)
+   }
+})
 route.put('/comment/:id', async (req,res)=>{
    try{
    console.log(req.params.id)
