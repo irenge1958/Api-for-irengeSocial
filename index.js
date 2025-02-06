@@ -26,7 +26,7 @@ app.use(morgan("common"))
 app.use('/users',userrouter)
 app.use('/Auth',authrouter)
 app.use('/tchat',tchatrouter)
-app.use('/post',postrouter)
+app.use('/share',postrouter)
 app.get('/', (req, res) => {
   res.status(200).send('API is working on Vercell!');
 });
