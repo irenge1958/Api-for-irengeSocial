@@ -19,14 +19,22 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Specify allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'],  // Specify allowed headers
 }));
-app.options('*', cors()); 
+app.options("*", (req, res) => {
+  res.set({
+    "Access-Control-Allow-Origin": "https://irenge-socialfront-1eby.vercel.app",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Origin, Content-Type, Authorization",
+    "Access-Control-Allow-Credentials": "true"
+  });
+  res.sendStatus(204);
+});
 app.use(express.json())
 app.use(helmet())
 app.use(morgan("common"))
 app.use('/users',userrouter)
 app.use('/Auth',authrouter)
 app.use('/tchat',tchatrouter)
-app.use('/share',postrouter)
+app.use('/post',postrouter)
 app.get('/', (req, res) => {
   res.status(200).send('API is working on Vercell!');
 });
