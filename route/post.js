@@ -48,8 +48,16 @@ route.post('/createpost', async (req,res)=>{
         Desc:req.body.desc,
       
        }) 
-       await newpost.save();
-    res.status(200).send(newpost)
+       const savedPost = await newpost.save();
+
+       // Une fois sauvegardé, tu peux récupérer l'ID généré
+       savedPost.link = savedPost._id;
+     
+       // Sauvegarder à nouveau le post après avoir ajouté le lien
+       await savedPost.save();
+     
+       // Renvoi de la réponse avec le post sauvegardé
+       res.status(200).send(savedPost);
     
   const thepostnot = {
    _id: newpost._id.toString(),
