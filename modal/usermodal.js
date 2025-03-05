@@ -7,6 +7,12 @@ const userScheme=mongoose.Schema({
         max:30,
         unique:true
     },
+    fromgoogle:{
+        type:String,
+        default:false
+
+    },
+
     email:{
         type:String,
         required:true,
@@ -16,8 +22,7 @@ const userScheme=mongoose.Schema({
     },
     password:{
         type:String,
-        required:true,
-        min:6,
+        
     },
     city:{
         type:String,

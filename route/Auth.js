@@ -52,5 +52,36 @@ route.post('/login', async (req, res) => {
        return res.status(500).send('Internal Server Error'); // Return a generic error message for internal server error
    }
 });
+route.post('/signinwithgoogle', async (req, res,next) => {
+    console.log(req.body.email)
+    
+     try {
+         // Find user by email
+         const newUser = await user.findOne({ email: req.body.email });
+    
+         // Check if user exists
+         if (newUser) {
+ // Send success response
+ res.status(200).json(newUser);}
+ 
+else{
+    const newUser = await user.create({
+        email: req.body.email,
+        profilepicture: req.body.img,
+        username: req.body.username,
+        fromgoogle:true
+    });
 
+    // Send success response
+    res.status(200).json(newUser);
+}
+ 
+
+
+     } catch (err) {
+         console.log(err);
+         // Send an error response
+         next(err)
+     }
+    });
 module.exports=route;

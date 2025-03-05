@@ -5,12 +5,12 @@ const Notification = require('../modal/notificationmodal');
 
 route.get('/not/:not', async (req,res)=>{
    try{
-      
+      console.log(req.params.not)
 const arrayintostring=req.params.not.split(',')
       const not=await Promise.all(arrayintostring.map((noti)=>{
          return Notification.findOne({_id:noti})
       }))
-      console.log(not)
+      
       res.status(200).send(not)
 }
 catch(err){
